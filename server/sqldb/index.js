@@ -16,5 +16,10 @@ var db = {
 // Insert models below
 db.Thing = db.sequelize.import('../api/thing/thing.model');
 db.User = db.sequelize.import('../api/user/user.model');
+db.Photo = db.sequelize.import('../api/photo/photo.model');
+db.Photoset = db.sequelize.import('../api/photoset/photoset.model');
+
+db.Photoset.hasMany(db.Photo);
+db.Photo.belongsTo(db.Photoset);
 
 export default db;
