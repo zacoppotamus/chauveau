@@ -36,13 +36,27 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true
       }
     },
+    // location: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    //   defaultValue: null
+    // },
     provider: DataTypes.STRING,
     salt: DataTypes.STRING,
     facebook: DataTypes.TEXT,
     twitter: DataTypes.TEXT,
     github: DataTypes.TEXT
 
-  }, {
+  },
+  // {
+  //   classMethods: {
+  //       associate: function(db) {
+  //         User.hasMany(db.Photoset);
+  //       }
+  //     }
+  //   },
+
+  {
 
     /**
      * Virtual Getters

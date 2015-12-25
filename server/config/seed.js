@@ -7,6 +7,8 @@
 import sqldb from '../sqldb';
 var Thing = sqldb.Thing;
 var User = sqldb.User;
+var Photoset = sqldb.Photoset;
+var Photo = sqldb.Photo;
 
 Thing.sync()
   .then(() => {
@@ -51,12 +53,14 @@ User.sync()
       name: 'Test User',
       email: 'test@example.com',
       password: 'test'
+      // location: 'thessaliniki'
     }, {
       provider: 'local',
       role: 'admin',
       name: 'Admin',
       email: 'admin@example.com',
       password: 'admin'
+      // location: 'thessaliniki'
     }])
     .then(() => {
       console.log('finished populating users');

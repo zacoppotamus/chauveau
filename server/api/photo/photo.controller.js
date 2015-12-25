@@ -70,7 +70,7 @@ export function index(req, res) {
 export function show(req, res) {
   Photo.find({
     where: {
-      _id: req.params.id
+      photo_id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
@@ -92,7 +92,7 @@ export function update(req, res) {
   }
   Photo.find({
     where: {
-      _id: req.params.id
+      photo_id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
@@ -105,7 +105,7 @@ export function update(req, res) {
 export function destroy(req, res) {
   Photo.find({
     where: {
-      _id: req.params.id
+      photo_id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
