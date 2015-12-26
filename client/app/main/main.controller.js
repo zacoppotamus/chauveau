@@ -4,10 +4,10 @@
 
 class MainController {
 
-  constructor($http) {
+  constructor($http, Auth) {
     this.$http = $http;
     this.awesomeThings = [];
-    // this.isLoggedIn = Auth.isLoggedIn;
+    this.isLoggedIn = Auth.isLoggedIn;
 
     $http.get('/api/things').then(response => {
       this.awesomeThings = response.data;
