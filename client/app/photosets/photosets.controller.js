@@ -20,11 +20,13 @@ class PhotosetController {
   addPhotoset(form) {
     this.submitted = true;
 
+    console.log(this.photoset);
+
     if (form.$valid) {
       this.$http.post('/api/photosets', {
-        name: this.photoset.photosetName,
-        narrative: this.photoset.photosetNarrative,
-        location: this.photoset.photosetLocation
+        name: this.photoset.name,
+        narrative: this.photoset.narrative,
+        location: this.photoset.location
       });
     }
   }

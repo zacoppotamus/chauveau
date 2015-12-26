@@ -21,6 +21,6 @@ db.Photoset = db.sequelize.import('../api/photoset/photoset.model');
 
 db.Photo.belongsTo(db.Photoset);
 db.Photoset.hasMany(db.Photo);
-// db.User.hasMany(db.Photoset);
+db.User.hasMany(db.Photoset);
 
 export default db;

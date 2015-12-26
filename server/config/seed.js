@@ -45,6 +45,18 @@ Thing.sync()
     }]);
   });
 
+Photoset.sync()
+  .then(() => {
+    return Photoset.destroy({ where: {} });
+  })
+  .then(() => {
+    Photoset.bulkCreate([{
+      name: 'Christmas 2015',
+      narrative: 'Christmas with the family',
+      location: 'Thessaloniki, Greece',
+    }]);
+  });
+
 User.sync()
   .then(() => User.destroy({ where: {} }))
   .then(() => {
