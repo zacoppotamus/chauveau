@@ -1,6 +1,9 @@
 'use strict';
 
 class PhotosetController {
+  photoset = {};
+  errors = {};
+
   constructor($http, $state, Auth) {
     this.$http = $http;
     this.$state = $state;
@@ -14,12 +17,16 @@ class PhotosetController {
 
   };
 
-  addPhotoset() {
-    this.$http.post('/api/photosets', {
-      name: this.photosetName,
-      narrative: this.photosetNarrative,
-      location: this.photosetLocation
-    });
+  addPhotoset(form) {
+    this.submitted = true;
+
+    if (form.$valid) {
+      this.$http.post('/api/photosets', {
+        name: this.photoset.photosetName,
+        narrative: this.photoset.photosetNarrative,
+        location: this.photoset.photosetLocation
+      });
+    }
   }
 }
 
