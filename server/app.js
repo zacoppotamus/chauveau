@@ -31,5 +31,25 @@ sqldb.sequelize.sync()
     console.log('Server failed to start due to error: %s', err);
   });
 
+// Set up S3 storing
+// var s3_config = require('./config/local.env');
+// var AWS_ACCESS_KEY = s3_config.AWS_ACCESS_KEY;
+// var AWS_SECRET_KEY = s3_config.AWS_SECRET_KEY;
+// var S3_BUCKET = s3_config.S3_BUCKET;
+// import aws from 'aws-sdk';
+// aws.config.update({
+//   accessKeyId: AWS_ACCESS_KEY,
+//   secretAccessKey: AWS_SECRET_KEY,
+//   region: 'Frankfurt',
+//   signatureVersion: 'v4'
+// });
+
+// var s3 = new aws.S3();
+// var s3_params = {
+//   Bucket: s3_config.S3_BUCKET
+// }
+
+// console.log(AWS_SECRET_KEY);
+
 // Expose app
 exports = module.exports = app;

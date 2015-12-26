@@ -17,4 +17,8 @@ module.exports = {
 
   // Control debug level for modules using visionmedia/debug
   DEBUG: ''
+
+  AWS_ACCESS_KEY = "xxx";
+  AWS_SECRET_KEY = "xxx";
+  S3_BUCKET = "xxx";
 };
