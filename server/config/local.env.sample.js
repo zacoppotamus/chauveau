@@ -21,4 +21,5 @@ module.exports = {
   AWS_ACCESS_KEY = "xxx";
   AWS_SECRET_KEY = "xxx";
   S3_BUCKET = "xxx";
+  S3_REGION = "xxx";
 };

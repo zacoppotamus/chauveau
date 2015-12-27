@@ -8,6 +8,7 @@ import express from 'express';
 import sqldb from './sqldb';
 import config from './config/environment';
 import http from 'http';
+import aws from 'aws-sdk';
 
 // Populate databases with sample data
 if (config.seedDB) { require('./config/seed'); }
@@ -36,7 +37,6 @@ sqldb.sequelize.sync()
 // var AWS_ACCESS_KEY = s3_config.AWS_ACCESS_KEY;
 // var AWS_SECRET_KEY = s3_config.AWS_SECRET_KEY;
 // var S3_BUCKET = s3_config.S3_BUCKET;
-// import aws from 'aws-sdk';
 // aws.config.update({
 //   accessKeyId: AWS_ACCESS_KEY,
 //   secretAccessKey: AWS_SECRET_KEY,

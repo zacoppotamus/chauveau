@@ -4,12 +4,14 @@ class PhotosetController {
   photoset = {};
   errors = {};
 
-  constructor($http, $state, Auth) {
+  constructor($http, $state, Auth, $scope) {
     this.$http = $http;
     this.$state = $state;
     this.isLoggedIn = Auth.isLoggedIn;
     this.currentUser = Auth.getCurrentUser();
-    console.log(this.currentUser);
+    this.$scope = $scope;
+    this.partialDownloadLink = 'http://localhost:8080/download?filename=';
+    // console.log(partialDownloadLink);
 
     if (this.isLoggedIn() === false) {
       this.$state.go('main');
@@ -17,12 +19,22 @@ class PhotosetController {
 
   };
 
+  getSignedRequest(file) {
+    this.$http.get('/api/storage/sign_s3', {
+      // headers: {'x-amz-acl', 'public-read'},
+      file_name: "zzz",
+      file_type: "zzz"
+    })
+  }
+
   addPhotoset(form) {
     this.submitted = true;
 
-    console.log(this.photoset);
-
     if (form.$valid) {
+      // Upload dropzone pictures here, if any
+      this.resetDropzone();
+
+
       this.$http.post('/api/photosets', {
         name: this.photoset.name,
         narrative: this.photoset.narrative,
@@ -30,6 +42,15 @@ class PhotosetController {
       });
     }
   }
+
+  uploadFile() {
+      this.$scope.processDropzone();
+  };
+
+  resetDropzone() {
+    alert("resetting");
+    this.$scope.resetDropzone();
+  };
 }
 
 angular.module('sqlChauveauApp')

@@ -32,8 +32,23 @@
              Please enter a photoset name.
           </p>
 
+
           <p class="help-block">{{ vm.errors.other }}</p>
         </div>
+
+        <div class="well">
+          <label>Photos</label>
+          <div action="" class="dropzone" dropzone="" id="dropzone">
+              <div class="dz-default dz-message">
+              </div>
+          </div>
+        </div>
+
+        <div class="pull-right">
+          <button class="btn btn-success" ng-click="vm.uploadFile()">Upload File</button>
+          <button class="btn btn-danger" ng-click="vm.resetDropzone()">Reset Dropzone</button>
+        </div>
+
 
         <div>
           <button class="btn btn-inverse btn-lg btn-login" type="submit">
@@ -44,4 +59,6 @@
       </form>
     </div>
   </div>
+
+
 </div>

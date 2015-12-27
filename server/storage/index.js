@@ -2,7 +2,8 @@
 
 import express from 'express';
 // import config from '../config/environment';
-// import aws from './aws_sdk';
+// import aws from 'aws_sdk';
+var aws = require('aws-sdk');
 
 // Set up credentials for S3
 var s3_config = require('../config/local.env');
@@ -47,6 +48,19 @@ router.get('/sign_s3', function(req, res, next) {
           res.end();
       }
   });
+});
+
+/*
+ * Respond to POST requests to /submit_form.
+ * This function needs to be completed to handle the information in
+ * a way that suits your application.
+ */
+router.post('/submit_form', function(req, res){
+    username = req.body.username;
+    full_name = req.body.full_name;
+    photo_url = req.body.photo_url;
+    // update_account(username, full_name, photo_url); // TODO: create this function
+    // TODO: Return something useful or redirect
 });
 
 
