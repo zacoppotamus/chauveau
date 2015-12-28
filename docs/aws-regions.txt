@@ -1,0 +1,5 @@
+Give everyone permission to upload/delete.
+Still uploads but gives 403 if you don't.
+
+Frankfurt: eu-central-1
+Standard US: us-east-1

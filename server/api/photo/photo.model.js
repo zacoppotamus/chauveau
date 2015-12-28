@@ -10,13 +10,13 @@ export default function(sequelize, DataTypes) {
     },
     name: DataTypes.STRING,
     info: DataTypes.STRING,
-    active: DataTypes.BOOLEAN,
     imageUrl: DataTypes.STRING,
     imageSource: DataTypes.STRING
   }, {
       classMethods: {
         associate: function(db) {
           Photo.belongsTo(db.Photoset, {foreignKey: 'photoset_id'});
+          Photo.belongsTo(db.User, {foreignKey: 'user_id'});
         }
       }
   });

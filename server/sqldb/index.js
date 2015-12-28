@@ -19,8 +19,10 @@ db.User = db.sequelize.import('../api/user/user.model');
 db.Photo = db.sequelize.import('../api/photo/photo.model');
 db.Photoset = db.sequelize.import('../api/photoset/photoset.model');
 
-db.Photo.belongsTo(db.Photoset);
-db.Photoset.hasMany(db.Photo);
-db.User.hasMany(db.Photoset);
+db.Photo.belongsTo(db.Photoset, {foreignKey: 'photoset_id'});
+db.Photo.belongsTo(db.User, {foreignKey: 'user_id'});
+db.Photoset.belongsTo(db.User, {foreignKey: 'user_id'});
+// db.Photoset.hasMany(db.Photo, {as: 'Photos'})
+// db.User.hasMany(db.Photoset);
 
 export default db;

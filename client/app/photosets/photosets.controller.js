@@ -48,7 +48,6 @@ class PhotosetController {
   };
 
   resetDropzone() {
-    alert("resetting");
     this.$scope.resetDropzone();
   };
 }

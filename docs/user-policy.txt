@@ -1,0 +1,23 @@
+{
+  "Version": "2008-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowPublicRead",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": [
+        "s3:ListBucket",
+        "s3:DeleteObject",
+        "s3:GetObject",
+        "s3:PutObjectAcl",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::chauveau-us",
+        "arn:aws:s3:::chauveau-us/*"
+      ]
+    }
+  ]
+}

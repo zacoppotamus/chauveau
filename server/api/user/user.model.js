@@ -10,7 +10,7 @@ var validatePresenceOf = function(value) {
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
 
-    _id: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
