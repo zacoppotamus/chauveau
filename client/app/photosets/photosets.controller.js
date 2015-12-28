@@ -32,7 +32,7 @@ class PhotosetController {
 
     if (form.$valid) {
       // Upload dropzone pictures here, if any
-      this.resetDropzone();
+      // this.uploadFile();
 
 
       this.$http.post('/api/photosets', {

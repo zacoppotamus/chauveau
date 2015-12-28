@@ -1,39 +1,105 @@
 'use strict';
 
 angular.module('sqlChauveauApp')
-  .directive('dropzone', function () {
+  .directive('dropzone', ['$http', function ($http) {
     return {
       template: '<div></div>',
       restrict: 'EA',
       link: function (scope, element, attrs) {
+        scope.file = {};
+        scope.getUploadUrl = function(file, cb) {
+          var params = {
+            fileName: file.name,
+            fileType: file.type,
+          };
+
+          $http({
+            method: 'GET',
+            url: '/storage/sign_s3',
+            params: {
+              file_type: file.type,
+              file_name: file.name,
+            },
+          }).then(function(data) {
+            console.log(data);
+            console.log(data.data.signed_request);
+            alert ('get request made');
+            if (!data.data.signed_request) {
+              return cb('Failed to receive an upload url');
+            }
+            console.log(data);
+            scope.file.uploadUrl = data.data.signed_request;
+            scope.file.signed_request = data.data.signed_request;
+            console.log(scope.file.uploadUrl);
+            cb();
+          }, function(data, cb) {;
+            if (!data.data.signed_request) {
+              return cb('Failed to receive an upload url');
+            }
+          })
+        };
+
+
         var config = {
-            url: 'http://localhost:8080/upload',
-            maxFilesize: 100,
+            url: 'http://chauveau.s3.amazonaws.com/',
+            maxFilesize: 30,
             paramName: "uploadfile",
             maxThumbnailFilesize: 10,
+            acceptedMimeTypes: "image/bmp,image/jpg,image/jpeg,image/png",
             parallelUploads: 1,
-            autoProcessQueue: false
-        };
-
-        var eventHandlers = {
-            'addedfile': function(file) {
-                scope.file = file;
-                if (this.files[1]!=null) {
-                    this.removeFile(this.files[0]);
-                }
-                scope.$apply(function() {
-                    scope.fileAdded = true;
-                });
+            // autoProcessQueue: false,
+            accept: scope.getUploadUrl,
+            headers: { "x-amz-acl": "public-read" },
+            method: 'PUT',
+            sending: function(file, xhr) {
+              var xhr = new XMLHttpRequest();
+              xhr.open('PUT', this.options.signed_request);
+              xhr.setRequestHeader('x-amz-acl', 'public-read');
+              xhr.onload = function() {
+                alert("upload successful");
+              };
+              xhr.onerror = function() {
+                alert("Could not upload file.");
+              };
+              xhr.send(file);
+              // var _send = xhr.send;
+              // xhr.setRequestHeader('Content-Type', file.type);
+              // xhr.onerror = function() {
+              //     alert("Could not upload file.");
+              // };
+              // xhr.send = function() {
+              //   _send.call(xhr, file);
+              // };
             },
-
-            'success': function (file, response) {
-            }
         };
+
 
         var dropzone = new Dropzone(element[0], config);
-        angular.forEach(eventHandlers, function(handler, event) {
-            dropzone.on(event, handler);
+        // angular.forEach(eventHandlers, function(handler, event) {
+        //     dropzone.on(event, handler);
+        // });
+
+        dropzone.on('processing', function(file) {
+          // Change url before sending
+          this.options.url = scope.file.uploadUrl;
+          this.options.signed_request = scope.file.signed_request;
+          console.log('processing', this.options.signed_request);
         });
+
+        // var eventHandlers = {
+        //     'addedfile': function(file) {
+        //         scope.file = file;
+        //         if (this.files[1]!=null) {
+        //             this.removeFile(this.files[0]);
+        //         }
+        //         scope.$apply(function() {
+        //             scope.fileAdded = true;
+        //         });
+        //     },
+
+        //     'success': function (file, response) {
+        //     }
+        // };
 
         scope.processDropzone = function() {
             dropzone.processQueue();
@@ -43,6 +109,8 @@ angular.module('sqlChauveauApp')
             alert("resetting dropzone");
             dropzone.removeAllFiles();
         }
+
+
       }
     };
-  });
+  }]);
