@@ -28,9 +28,10 @@ router.get('/sign_s3', function(req, res, next) {
   });
 
   var s3 = new aws.S3();
+  console.log(req.query.file_name);
   var s3_params = {
       Bucket: S3_BUCKET,
-      Key: req.query.file_name,
+      Key: 'test/'+req.query.file_name,
       Expires: 60,
       ContentType: req.query.file_type,
       ACL: 'public-read'

@@ -23,7 +23,6 @@ angular.module('sqlChauveauApp')
           }).then(function(data) {
             console.log(data);
             console.log(data.data.signed_request);
-            alert ('get request made');
             if (!data.data.signed_request) {
               return cb('Failed to receive an upload url');
             }
@@ -41,7 +40,7 @@ angular.module('sqlChauveauApp')
 
 
         var config = {
-            url: 'http://chauveau.s3.amazonaws.com/',
+            url: 'http://chauveau-us.s3.amazonaws.com/',
             maxFilesize: 30,
             paramName: "uploadfile",
             maxThumbnailFilesize: 10,
@@ -55,8 +54,9 @@ angular.module('sqlChauveauApp')
               var xhr = new XMLHttpRequest();
               xhr.open('PUT', this.options.signed_request);
               xhr.setRequestHeader('x-amz-acl', 'public-read');
+              xhr.setRequestHeader('Content-Type', 'image/jpeg');
               xhr.onload = function() {
-                alert("upload successful");
+                // alert("upload successful");
               };
               xhr.onerror = function() {
                 alert("Could not upload file.");
