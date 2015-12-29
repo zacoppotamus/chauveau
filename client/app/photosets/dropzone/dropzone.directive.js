@@ -1,12 +1,16 @@
 'use strict';
 
 angular.module('sqlChauveauApp')
-  .directive('dropzone', ['$http', function ($http) {
+  .directive('dropzone', ['$http', 'Auth', function ($http, Auth) {
     return {
       template: '<div></div>',
       restrict: 'EA',
       link: function (scope, element, attrs) {
+        scope.user = Auth.getCurrentUser();
         scope.file = {};
+        scope.photoURLs = []; // Store all URLs for uploaded images
+
+
         scope.getUploadUrl = function(file, cb) {
           var params = {
             fileName: file.name,
@@ -16,21 +20,26 @@ angular.module('sqlChauveauApp')
           $http({
             method: 'GET',
             url: '/storage/sign_s3',
+
             params: {
               file_type: file.type,
               file_name: file.name,
+              email: scope.user.email
             },
           }).then(function(data) {
             console.log(data);
             console.log(data.data.signed_request);
+            console.log(data.data.url);
+
+            scope.photoURLs.push(data.data.url);
+            console.log(scope.photoURLs);
+
             if (!data.data.signed_request) {
               return cb('Failed to receive an upload url');
             }
-            console.log(data);
             scope.file.fileType = file.type;
             scope.file.uploadUrl = data.data.signed_request;
             scope.file.signed_request = data.data.signed_request;
-            console.log(scope.file.uploadUrl);
             cb();
           }, function(data, cb) {;
             if (!data.data.signed_request) {

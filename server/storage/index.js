@@ -19,6 +19,8 @@ var router = express.Router();
  * Upon request, return JSON containing the temporarily-signed S3 request and the
  * anticipated URL of the image.
  */
+
+// TO DO: Make file path/url more secure
 router.get('/sign_s3', function(req, res, next) {
   aws.config.update({
     accessKeyId: AWS_ACCESS_KEY,
@@ -29,9 +31,10 @@ router.get('/sign_s3', function(req, res, next) {
 
   var s3 = new aws.S3();
   console.log(req.query.file_name);
+  var filePath = req.query.email + '/' + req.query.file_name;
   var s3_params = {
       Bucket: S3_BUCKET,
-      Key: 'test/'+req.query.file_name,
+      Key: filePath,
       Expires: 60,
       ContentType: req.query.file_type,
       ACL: 'public-read'
@@ -43,7 +46,7 @@ router.get('/sign_s3', function(req, res, next) {
       else{
           var return_data = {
               signed_request: data,
-              url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+req.query.file_name
+              url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+filePath
           };
           res.write(JSON.stringify(return_data));
           res.end();
