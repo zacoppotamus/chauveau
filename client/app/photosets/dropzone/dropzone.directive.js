@@ -55,7 +55,7 @@ angular.module('sqlChauveauApp')
             paramName: "uploadfile",
             maxThumbnailFilesize: 10,
             acceptedMimeTypes: "image/bmp,image/jpg,image/jpeg,image/png",
-            parallelUploads: 1,
+            parallelUploads: 10,
             autoProcessQueue: false,
             accept: scope.getUploadUrl,
             headers: [{ "x-amz-acl": "public-read"}],
@@ -81,9 +81,10 @@ angular.module('sqlChauveauApp')
         var eventHandlers = {
             'addedfile': function(file) {
                 scope.file = file;
-                if (this.files[1]!=null) {
-                    this.removeFile(this.files[0]);
-                }
+                // Turn them upside down
+                // if (this.files[1]!=null) {
+                //     this.removeFile(this.files[0]);
+                // }
                 scope.$apply(function() {
                     scope.fileAdded = true;
                 });
