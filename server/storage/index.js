@@ -46,7 +46,8 @@ router.get('/sign_s3', function(req, res, next) {
       else{
           var return_data = {
               signed_request: data,
-              url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+filePath
+              url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+filePath,
+              file_type: req.query.file_type
           };
           res.write(JSON.stringify(return_data));
           res.end();
