@@ -30,7 +30,7 @@ router.get('/sign_s3', function(req, res, next) {
   });
 
   var s3 = new aws.S3();
-  console.log(req.query.file_name);
+  console.log(req.query.file_type);
   var filePath = req.query.email + '/' + req.query.file_name;
   var s3_params = {
       Bucket: S3_BUCKET,

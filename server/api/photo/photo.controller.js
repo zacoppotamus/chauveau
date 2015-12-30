@@ -59,6 +59,26 @@ function removeEntity(res) {
   };
 }
 
+// Get photos from specific photoset
+export function photosetPhoto(req, res) {
+  console.log('photoset: ', req.params.photoset_id);
+  Photo.findAll({
+    where: {
+      photoset_id: req.params.photoset_id
+    }
+  })
+    .then(function(photoset) {
+      if (photoset) {
+        handleEntityNotFound(res);
+        responseWithResult(res)
+        res.status(200).json(photoset)
+      }
+      else {
+        res.status(200).json([])
+      }
+    })
+}
+
 // Gets a list of photos
 export function index(req, res) {
   Photo.findAll()

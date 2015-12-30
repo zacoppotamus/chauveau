@@ -9,6 +9,7 @@ angular.module('sqlChauveauApp')
         scope.user = Auth.getCurrentUser();
         scope.file = {};
         scope.photoURLs = []; // Store all URLs for uploaded images
+        scope.signedRequests = []; // Store all signed requests for uploaded images
 
 
         scope.getUploadUrl = function(file, cb) {
@@ -37,6 +38,7 @@ angular.module('sqlChauveauApp')
             if (!data.data.signed_request) {
               return cb('Failed to receive an upload url');
             }
+            scope.signedRequests.push(data.data.signed_request);
             scope.file.fileType = file.type;
             scope.file.uploadUrl = data.data.signed_request;
             scope.file.signed_request = data.data.signed_request;
@@ -50,7 +52,7 @@ angular.module('sqlChauveauApp')
 
 
         var config = {
-            url: 'http://chauveau-us.s3.amazonaws.com/',
+            url: 'http://chauveau.s3.amazonaws.com/',
             maxFilesize: 30,
             paramName: "uploadfile",
             maxThumbnailFilesize: 10,
@@ -58,21 +60,22 @@ angular.module('sqlChauveauApp')
             parallelUploads: 10,
             autoProcessQueue: false,
             accept: scope.getUploadUrl,
-            headers: [{ "x-amz-acl": "public-read"}],
+            // headers: [{ "x-amz-acl": "public-read", "Content-Type": "image/jpg"}],
             method: 'PUT',
-            // sending: function(file, xhr) {
-            //   var xhr = new XMLHttpRequest();
-            //   xhr.open('PUT', this.options.signed_request);
-            //   xhr.setRequestHeader('x-amz-acl', 'public-read');
-            //   xhr.setRequestHeader('Content-Type', 'image/jpeg');
-            //   xhr.onload = function() {
-            //     // alert("upload successful");
-            //   };
-            //   xhr.onerror = function() {
-            //     alert("Could not upload file.");
-            //   };
-            //   xhr.send(file);
-            // },
+            sending: function(file, xhr) {
+              var xhr = new XMLHttpRequest();
+              console.log("scope.signedRequests", scope.signedRequests)
+              xhr.open('PUT', scope.signedRequests.pop());
+              xhr.setRequestHeader('x-amz-acl', 'public-read');
+              xhr.setRequestHeader('Content-Type', file.type);
+              xhr.onload = function() {
+                alert("upload successful");
+              };
+              xhr.onerror = function() {
+                alert("Could not upload file.");
+              };
+              xhr.send(file);
+            },
         };
 
 
@@ -101,9 +104,9 @@ angular.module('sqlChauveauApp')
         dropzone.on('processing', function(file) {
           // Change url before sending
           this.options.url = scope.file.uploadUrl;
-          this.options.headers.push({
-            'Content-Type': scope.fileType
-          });
+          // this.options.headers.push({
+          //   'Content-Type': scope.fileType
+          // });
           this.options.signed_request = scope.file.signed_request;
           console.log('processing', this.options.signed_request);
         });

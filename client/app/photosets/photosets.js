@@ -6,11 +6,18 @@ angular.module('sqlChauveauApp')
       .state('photosets', {
         url: '/photosets',
         templateUrl: 'app/photosets/photosets.html',
-        controller: 'PhotosetsCtrl'
+        controller: 'PhotosetsCtrl',
+        controllerAs: 'vm'
       })
       .state('addPhotoset', {
         url: '/add_photoset',
         templateUrl: 'app/photosets/add_photoset.html',
+        controller: 'PhotosetsCtrl',
+        controllerAs: 'vm'
+      })
+      .state('photoset', {
+        url: '/photoset/:photosetId',
+        templateUrl: 'app/photosets/photoset.html',
         controller: 'PhotosetsCtrl',
         controllerAs: 'vm'
       })

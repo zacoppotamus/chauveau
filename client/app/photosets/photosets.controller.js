@@ -4,9 +4,10 @@ class PhotosetController {
   photoset = {};
   errors = {};
 
-  constructor($http, $state, Auth, $scope) {
+  constructor($http, $state, $stateParams, Auth, $scope) {
     this.$http = $http;
     this.$state = $state;
+    this.$stateParams = $stateParams;
     this.isLoggedIn = Auth.isLoggedIn;
     this.currentUser = Auth.getCurrentUser();
     this.currentUserId = this.currentUser._id;
@@ -14,9 +15,23 @@ class PhotosetController {
     this.$scope = $scope;
     this.partialDownloadLink = 'http://localhost:8080/download?filename=';
     this.photosets = null;
+    this.photos = null;
 
     if(this.$state.current.name === "photosets") {
       this.getPhotosets();
+    }
+
+    if(this.$state.current.name === "photoset") {
+      // Populate photos for photoset
+      this.getPhotos()
+      var photosetId = this.$stateParams.photosetId;
+
+      // Get pictures belonging to this photoset
+      this.$http.get('/api/photos/photoset/' + photosetId)
+        .then((response) => {
+          this.photos = response.data
+          console.log(this.photos);
+        })
     }
 
     if (this.isLoggedIn() === false) {
@@ -24,6 +39,11 @@ class PhotosetController {
     }
 
   };
+
+  // Get photos from current photoset
+  getPhotos(photosetName) {
+    return;
+  }
 
   // Get Photosets belonging to current user
   getPhotosets() {
@@ -44,7 +64,7 @@ class PhotosetController {
     this.$http.get('/api/photosets/user/' + this.currentUserId, {
         params: params
       }).then((response) => {
-        this.photosets = response;
+        this.photosets = response.data;
         console.log(this.photosets);
       })
   }

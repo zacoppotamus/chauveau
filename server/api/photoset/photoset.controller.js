@@ -74,14 +74,13 @@ function removeEntity(res) {
 // Get photoset for one user
 export function userPhotoset(req, res) {
   console.log('user photoset: ', req.params.user_id);
-  Photoset.find({
+  Photoset.findAll({
     where: {
       user_id: req.params.user_id
     }
   })
     .then(function(photoset) {
       if (photoset) {
-        console.log(photoset)
         handleEntityNotFound(res);
         responseWithResult(res)
         res.status(200).json(photoset)

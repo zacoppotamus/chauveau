@@ -1,1 +1,10 @@
 <div>This is the photosets view.</div>
+<ul class="list-group user-list">
+  <p>fds</p>
+  <li class="list-group-item" ng-repeat="photoset in vm.photosets">
+    <a ui-sref="photoset({ photosetId: photoset.photoset_id })">
+      <p>{{photoset.name}}</p>
+    </a>
+  </li>
+  <div ng-if="photoset.length==0">No photosets yet!</div>
+</ul>
