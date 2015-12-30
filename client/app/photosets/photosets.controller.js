@@ -15,7 +15,9 @@ class PhotosetController {
     this.partialDownloadLink = 'http://localhost:8080/download?filename=';
     this.photosets = null;
 
-    this.getPhotosets();
+    if(this.$state.current.name === "photosets") {
+      this.getPhotosets();
+    }
 
     if (this.isLoggedIn() === false) {
       this.$state.go('main');
@@ -25,7 +27,6 @@ class PhotosetController {
 
   // Get Photosets belonging to current user
   getPhotosets() {
-    console.log(this.currentUser);
     var params = {
       user_id: this.currentUserId
     };
@@ -41,11 +42,10 @@ class PhotosetController {
     // });
 
     this.$http.get('/api/photosets', {
-        user_id: 32
+        params: params
       }).then((response) => {
-        console.log(this.currentUserId);
-        console.log(response);
         this.photosets = response;
+        console.log(this.photosets);
       })
   }
 

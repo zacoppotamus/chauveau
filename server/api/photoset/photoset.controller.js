@@ -39,6 +39,17 @@ function handleEntityNotFound(res) {
   };
 }
 
+function handlePhotosetsNotFound(res) {
+  return function(entity) {
+    if (!entity) {
+      res.status(200);
+      var entity = res.json([]);
+      return entity;
+    }
+    return entity;
+  };
+}
+
 function saveUpdates(updates) {
   return function(entity) {
     return entity.updateAttributes(updates)
@@ -61,17 +72,22 @@ function removeEntity(res) {
 
 // Gets a list of Photosets
 export function index(req, res) {
-  console.log(req.body.user_id);
-  // console.log(req.params);
-  if (req.params.user_id) {
+  if (req.query.user_id) {
     Photoset.find({
       where: {
-        user_id: req.body.user_id
+        user_id: req.query.user_id
       }
     })
-      .then(handleEntityNotFound(res))
-      .then(responseWithResult(res))
-      .catch(handleError(res));
+      .then(function(photoset) {
+        if (photoset) {
+          responseWithResult(res)
+        }
+        else {
+          res.status(200).json([])
+        }
+      })
+      // .then(responseWithResult(res))
+      // .catch(handleError(res));
   }
   else {
     Photoset.findAll()
@@ -84,10 +100,10 @@ export function index(req, res) {
 export function show(req, res) {
   Photoset.find({
     where: {
-      _id: req.params.id
+      photoset_id: req.params.id
     }
   })
-    .then(handleEntityNotFound(res))
+    .then(handlePhotosetsNotFound(res))
     .then(responseWithResult(res))
     .catch(handleError(res));
 }
@@ -102,12 +118,12 @@ export function create(req, res) {
 
 // Updates an existing Photoset in the DB
 export function update(req, res) {
-  if (req.body._id) {
-    delete req.body._id;
+  if (req.body.photoset_id) {
+    delete req.body.photoset_id;
   }
   Photoset.find({
     where: {
-      _id: req.params.id
+      photoset_id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
@@ -120,7 +136,7 @@ export function update(req, res) {
 export function destroy(req, res) {
   Photoset.find({
     where: {
-      _id: req.params.id
+      photoset_id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
