@@ -5,6 +5,7 @@ var controller = require('./photoset.controller');
 
 var router = express.Router();
 
+router.get('/user/:user_id', controller.userPhotoset);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', controller.create);

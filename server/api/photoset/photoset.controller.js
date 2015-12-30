@@ -1,5 +1,6 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
+ * GET     /api/photosets/?user=:user_id -> userPhotoset
  * GET     /api/photosets              ->  index
  * POST    /api/photosets              ->  create
  * GET     /api/photosets/:id          ->  show
@@ -70,34 +71,48 @@ function removeEntity(res) {
   };
 }
 
-// Gets a list of Photosets
+// Get photoset for one user
+export function userPhotoset(req, res) {
+  console.log('user photoset: ', req.params.id);
+  Photoset.find({
+    where: {
+      user_id: req.params.user_id
+    }
+  })
+    .then(handlePhotosetsNotFound(res))
+    .then(responseWithResult(res))
+    .catch(handleError(res));
+}
+
+// Gets a list of all Photosets
 export function index(req, res) {
-  if (req.query.user_id) {
-    Photoset.find({
-      where: {
-        user_id: req.query.user_id
-      }
-    })
-      .then(function(photoset) {
-        if (photoset) {
-          responseWithResult(res)
-        }
-        else {
-          res.status(200).json([])
-        }
-      })
-      // .then(responseWithResult(res))
-      // .catch(handleError(res));
-  }
-  else {
+  // if (req.query.user_id) {
+  //   Photoset.find({
+  //     where: {
+  //       user_id: req.query.user_id
+  //     }
+  //   })
+  //     .then(function(photoset) {
+  //       if (photoset) {
+  //         console.log(photoset)
+  //         handleEntityNotFound(res);
+  //         responseWithResult(res)
+  //       }
+  //       else {
+  //         res.status(200).json([])
+  //       }
+  //     })
+  // }
+  // else {
     Photoset.findAll()
       .then(responseWithResult(res))
       .catch(handleError(res));
-  }
+  // }
 }
 
 // Gets a single Photoset from the DB
 export function show(req, res) {
+  console.log('show photoset:', req.params.id);
   Photoset.find({
     where: {
       photoset_id: req.params.id

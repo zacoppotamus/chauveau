@@ -41,7 +41,7 @@ class PhotosetController {
     //   this.photosets = response;
     // });
 
-    this.$http.get('/api/photosets', {
+    this.$http.get('/api/photosets/user/' + this.currentUserId, {
         params: params
       }).then((response) => {
         this.photosets = response;
