@@ -29,6 +29,7 @@ export default function(sequelize, DataTypes) {
     classMethods: {
       associate: function(db) {
         Photoset.hasMany(db.Photo);
+        Photoset.belongsTo(db.User, {foreignKey: 'user_id'});
       }
     }
   });

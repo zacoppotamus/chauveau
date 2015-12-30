@@ -4,7 +4,7 @@
       <h1>Add Photoset</h1>
     </div>
     <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="vm.addPhotoset(form)" novalidate>
+      <form class="form" name="form" ng-submit="vm.uploadFiles()" novalidate>
 
         <div class="form-group">
           <label>Name</label>
@@ -45,7 +45,7 @@
         </div>
 
         <div class="pull-right">
-          <button class="btn btn-success" ng-click="vm.uploadFiles()">Upload File</button>
+          <!-- <button class="btn btn-success" type="submit" ng-click="vm.uploadFiles()">Upload File</button> -->
           <button class="btn btn-danger" ng-click="vm.resetDropzone()">Clear Photos</button>
         </div>
 
@@ -54,7 +54,6 @@
           <button class="btn btn-inverse btn-lg btn-login" type="submit">
             Create
           </button>
-
         </div>
       </form>
     </div>

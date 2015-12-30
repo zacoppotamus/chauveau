@@ -61,9 +61,23 @@ function removeEntity(res) {
 
 // Gets a list of Photosets
 export function index(req, res) {
-  Photoset.findAll()
-    .then(responseWithResult(res))
-    .catch(handleError(res));
+  console.log(req.body.user_id);
+  // console.log(req.params);
+  if (req.params.user_id) {
+    Photoset.find({
+      where: {
+        user_id: req.body.user_id
+      }
+    })
+      .then(handleEntityNotFound(res))
+      .then(responseWithResult(res))
+      .catch(handleError(res));
+  }
+  else {
+    Photoset.findAll()
+      .then(responseWithResult(res))
+      .catch(handleError(res));
+  }
 }
 
 // Gets a single Photoset from the DB

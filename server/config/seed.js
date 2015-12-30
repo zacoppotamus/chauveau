@@ -57,15 +57,15 @@ Photoset.sync()
     }]);
   });
 
-// Photo.sync()
-//   .then(() => {
-//     return Photo.destroy({ where: {} });
-//   })
-//   .then(() => {
-//     Photo.bulkCreate([{
+Photo.sync()
+  .then(() => {
+    return Photo.destroy({ where: {} });
+  })
+  .then(() => {
+    // Photo.bulkCreate([{
 
-//     }])
-//   });
+    // }])
+  });
 
 User.sync()
   .then(() => User.destroy({ where: {} }))
