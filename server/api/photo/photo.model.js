@@ -8,9 +8,7 @@ export default function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    name: DataTypes.STRING,
-    info: DataTypes.STRING,
-    imageUrl: DataTypes.STRING,
+    byline: DataTypes.STRING,
     imageSource: DataTypes.STRING
   }, {
       classMethods: {

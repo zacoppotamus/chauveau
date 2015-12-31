@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div ng-repeat="photo in vm.photos">
-        <form class="form" name="form" ng-submit="vm.editPhoto(photo)" novalidate>
+        <form class="form" name="form" ng-submit="vm.updatePhoto(photo, $index)" novalidate>
           <div class="col-sm-6">
             <img ng-src="{{ photo.imageSource }}" width="40%", height="20%" alt="">
           </div>
@@ -14,11 +14,11 @@
             <div class="form-group">
               <label>Byline</label>
 
-              <input type="text" name="byline" class="form-control" ng-model="vm.photo.byline" required>
+              <input type="text" name="byline" class="form-control" ng-model="vm.photo[$index].byline" required>
 
               <label>Make Cover Picture</label>
 
-              <input type="checkbox" name="narrative" class="form-control" ng-model="vm.photoset.coverPicture" required>
+              <input type="checkbox" name="narrative" class="form-control" ng-model="vm.photo[$index].makeCover" required>
             </div>
 
             <!-- <div class="form-group">

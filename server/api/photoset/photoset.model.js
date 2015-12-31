@@ -12,6 +12,7 @@ export default function(sequelize, DataTypes) {
     },
     name: DataTypes.STRING,
     narrative: DataTypes.TEXT,
+    coverImageURL: DataTypes.TEXT,
     location: DataTypes.STRING,
     latitude: {
       type: DataTypes.INTEGER,

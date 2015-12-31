@@ -2,6 +2,7 @@
 
 class PhotosetController {
   photoset = {};
+  photo = [];
   errors = {};
 
   constructor($http, $state, $stateParams, Auth, $scope) {
@@ -39,6 +40,22 @@ class PhotosetController {
     }
 
   };
+
+  updatePhoto(photo, index) {
+    console.log("photo", photo);
+    console.log("index", index);
+    console.log(this.photo);
+    this.$http.put('/api/photos/' + photo.photo_id, {
+      byline: this.photo[index].byline
+    })
+
+    // Change cover photo if need be
+    if (this.photo[index].makeCover) {
+      this.$http.put('/api/photosets/' + photo.photoset_id, {
+        coverImageURL: photo.imageSource
+      })
+    }
+  }
 
   // Get photos from current photoset
   getPhotos(photosetName) {
@@ -123,8 +140,8 @@ class PhotosetController {
         })
       });
     }).then(() => {
-      alert("done");
-      this.$state.go("editPhotoset", {photosetId: this.photosetId});
+      // alert("done");
+      // this.$state.go("editPhotoset", {photosetId: this.photosetId});
     });
 
   };
