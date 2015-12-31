@@ -1,28 +1,26 @@
-<navbar></navbar>
+<!-- <navbar></navbar> -->
 
-<header class="hero-unit" id="banner">
+<div class="full-bleed" id="main-container">
   <div class="container">
     <h1>Chauveau</h1>
-    <p class="lead">A Photographic Memoir.</p>
+    <hr>
+    <p>A Photographic Memoir</p>
   </div>
-</header>
+  <!-- <div class="row"> -->
+  <div class="footer">
+    <div ng-hide="nav.isLoggedIn()">
+      <h3 class="col-lg-2" ui-sref-active="active"><a ui-sref="signup">Sign up</a></h3>
+      <h3 class="col-lg-2" ui-sref-active="active"><a ui-sref="login">Login</a></h3>
+    </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <div ng-hide="nav.isLoggedIn()">
-        <h3 class="col-lg-6" ui-sref-active="active"><a ui-sref="signup">Sign up</a></h3>
-        <h3 class="col-lg-6" ui-sref-active="active"><a ui-sref="login">Login</a></h3>
-      </div>
-
-      <div ng-show="nav.isLoggedIn()">
-        <h3 class="col-lg-3"><a href="#">Profile</a></h3>
-        <h3 class="col-lg-3"><a href="#">Explore</a></h3>
-        <h3 class="col-lg-3"><a href="/photosets">My Photosets</a></h3>
-        <h3 class="col-lg-3"><a href="/add_photoset">Add Photoset</a></h3>
-      </div>
+    <div ng-show="nav.isLoggedIn()">
+      <h3 class="col-lg-3"><a href="#">Profile</a></h3>
+      <h3 class="col-lg-3"><a href="#">Explore</a></h3>
+      <h3 class="col-lg-3"><a href="/photosets">My Photosets</a></h3>
+      <h3 class="col-lg-3"><a href="/add_photoset">Add Photoset</a></h3>
     </div>
   </div>
+  <!-- </div> -->
 </div>
 
 <!-- <div class="container">
