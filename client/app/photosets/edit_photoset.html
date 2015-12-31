@@ -1,0 +1,39 @@
+<h1>Edit photoset</h1>
+
+<p>Have thumbnails here and the ability to set cover photo and add descriptions and bylines for each image</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div ng-repeat="photo in vm.photos">
+        <form class="form" name="form" ng-submit="vm.editPhoto(photo)" novalidate>
+          <div class="col-sm-6">
+            <img ng-src="{{ photo.imageSource }}" width="40%", height="20%" alt="">
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>Byline</label>
+
+              <input type="text" name="byline" class="form-control" ng-model="vm.photo.byline" required>
+
+              <label>Make Cover Picture</label>
+
+              <input type="checkbox" name="narrative" class="form-control" ng-model="vm.photoset.coverPicture" required>
+            </div>
+
+            <!-- <div class="form-group">
+            </div>
+   -->
+            <div>
+              <button class="btn btn-inverse btn-lg btn-login" type="submit">
+                Update
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+</div>

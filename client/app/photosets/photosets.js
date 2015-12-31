@@ -15,6 +15,12 @@ angular.module('sqlChauveauApp')
         controller: 'PhotosetsCtrl',
         controllerAs: 'vm'
       })
+      .state('editPhotoset', {
+        url: '/edit_photoset/:photosetId',
+        templateUrl: 'app/photosets/edit_photoset.html',
+        controller: 'PhotosetsCtrl',
+        controllerAs: 'vm'
+      })
       .state('photoset', {
         url: '/photoset/:photosetId',
         templateUrl: 'app/photosets/photoset.html',

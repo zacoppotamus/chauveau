@@ -5,6 +5,7 @@
     <a ui-sref="photoset({ photosetId: photoset.photoset_id })">
       <p>{{photoset.name}}</p>
     </a>
+    <a ui-sref="editPhotoset({ photosetId: photoset.photoset_id })"> Edit</a>
   </li>
-  <div ng-if="photoset.length==0">No photosets yet!</div>
+  <div ng-if="photoset.length===0">No photosets yet!</div>
 </ul>

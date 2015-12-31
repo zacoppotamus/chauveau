@@ -21,7 +21,7 @@ class PhotosetController {
       this.getPhotosets();
     }
 
-    if(this.$state.current.name === "photoset") {
+    if(this.$state.current.name === "photoset" || this.$state.current.name === "editPhotoset") {
       // Populate photos for photoset
       this.getPhotos()
       var photosetId = this.$stateParams.photosetId;
@@ -122,6 +122,9 @@ class PhotosetController {
           user_id: currentUserId
         })
       });
+    }).then(() => {
+      alert("done");
+      this.$state.go("editPhotoset", {photosetId: this.photosetId});
     });
 
   };
