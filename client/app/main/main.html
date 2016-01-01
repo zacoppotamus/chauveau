@@ -8,12 +8,12 @@
   </div>
   <!-- <div class="row"> -->
   <div class="footer">
-    <div ng-hide="nav.isLoggedIn()">
+    <div ng-hide="main.isLoggedIn()">
       <h3 class="col-lg-2" ui-sref-active="active"><a ui-sref="signup">Sign up</a></h3>
       <h3 class="col-lg-2" ui-sref-active="active"><a ui-sref="login">Login</a></h3>
     </div>
 
-    <div ng-show="nav.isLoggedIn()">
+    <div ng-show="main.isLoggedIn()">
       <h3 class="col-lg-3"><a href="#">Profile</a></h3>
       <h3 class="col-lg-3"><a href="#">Explore</a></h3>
       <h3 class="col-lg-3"><a href="/photosets">My Photosets</a></h3>

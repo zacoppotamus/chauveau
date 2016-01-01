@@ -16,6 +16,8 @@ class PhotosetController {
     this.$scope = $scope;
     this.partialDownloadLink = 'http://localhost:8080/download?filename=';
     this.photosets = null;
+
+    this.photoset = null;
     this.photos = null;
 
     if(this.$state.current.name === "photosets") {
@@ -26,6 +28,13 @@ class PhotosetController {
       // Populate photos for photoset
       this.getPhotos()
       var photosetId = this.$stateParams.photosetId;
+
+      // Get info about current photoset
+      this.$http.get('/api/photosets/' + photosetId)
+        .then((response) => {
+          this.photoset = response.data
+          console.log("Photoset info", this.photoset);
+        })
 
       // Get pictures belonging to this photoset
       this.$http.get('/api/photos/photoset/' + photosetId)
@@ -111,15 +120,16 @@ class PhotosetController {
     this.submitted = true;
 
     // if (form.$valid) {}
-      // Upload dropzone pictures here, if any
-      // TO DO: What happens with empty files
+    // Upload dropzone pictures here, if any
+    // TO DO: What happens with empty files
 
     var that = this;
     this.$http.post('/api/photosets', {
       name: this.photoset.name,
       narrative: this.photoset.narrative,
       location: this.photoset.location,
-      user_id: this.currentUserId
+      user_id: this.currentUserId,
+      coverImageURL: this.$scope.photoURLs[0]
     }).then((response) => {
 
       this.photosetId = response.data.photoset_id;

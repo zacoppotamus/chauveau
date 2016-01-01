@@ -1,0 +1,55 @@
+$black: #1a1a1a;
+$white: #a5a5a5;
+
+.photoset-container {
+  position: absolute;
+  width: 100%;
+  color: $white;
+  background-color: $black;
+
+}
+
+.photo-container {
+  max-width: 100%;
+
+  & .img-fluid {
+    max-width: 100%;
+  }
+}
+
+.photo-container-padding {
+  padding: 8% 8% 0% 8%;
+}
+
+.photo-container-cover {
+  max-width: 100%;
+  max-height: 100%;
+  font-family: Georgia;
+
+  & h1 {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+    top: 3%;
+    // Make font size responsive
+    font-size: 10em;
+    -webkit-text-stroke: 1px $black;
+    color: white;
+  }
+
+  & img {
+    opacity: 0.4;
+  }
+
+  & span {
+    position: absolute;
+    width: 100%;
+    text-align: right;
+    padding-right: 2%;
+    margin-top: -35px;
+    font-size: 23px;
+    -webkit-text-stroke: .4px $black;
+    color: white;
+  }
+}

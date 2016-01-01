@@ -1,6 +1,17 @@
-<p>This is the individual photoset view</p>
+<div class="photoset-container">
+  <div class="photo-container photo-container-cover">
 
-<li class="list-group-item" ng-repeat="photo in vm.photos">
-  <p>this is a photo</p>
-  <img ng-src="{{photo.imageSource}}" alt="">
-</li>
+    <h1>{{vm.photoset.name}}</h1>
+    <div>
+      <img data-src="{{vm.photoset.coverImageURL}}" alt="" class="img-fluid lazyload">
+      <span>{{vm.photoset.narrative}}</span>
+    </div>
+  </div>
+
+  <!-- If there's a description/quote for the photoset add it here -->
+
+  <!-- Don't show cover image - ng-if -->
+  <div ng-if="photo.imageSource != vm.photoset.coverImageURL" class="photo-container photo-container-padding" ng-repeat="photo in vm.photos">
+    <img class="img-fluid lazyload" data-src="{{photo.imageSource}}" alt="">
+  </div>
+</div>
