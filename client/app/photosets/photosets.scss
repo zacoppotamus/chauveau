@@ -6,6 +6,7 @@ $white: #a5a5a5;
   width: 100%;
   color: $white;
   background-color: $black;
+  padding-bottom: 8%;
 
 }
 
@@ -15,10 +16,19 @@ $white: #a5a5a5;
   & .img-fluid {
     max-width: 100%;
   }
+
+  & .byline {
+    color: $white;
+    width: 100%;
+    text-align: right;
+  }
 }
 
 .photo-container-padding {
   padding: 8% 8% 0% 8%;
+
+  // & img:last-child {
+  // }
 }
 
 .photo-container-cover {
@@ -42,7 +52,7 @@ $white: #a5a5a5;
     opacity: 0.4;
   }
 
-  & span {
+  & .narrative {
     position: absolute;
     width: 100%;
     text-align: right;
@@ -52,4 +62,14 @@ $white: #a5a5a5;
     -webkit-text-stroke: .4px $black;
     color: white;
   }
+}
+
+/* fade image in after load */
+.lazyload,
+.lazyloading {
+    opacity: 0;
+}
+.lazyloaded {
+    opacity: 1;
+    transition: opacity 300ms;
 }

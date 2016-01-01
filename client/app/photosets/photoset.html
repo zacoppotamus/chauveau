@@ -1,10 +1,10 @@
 <div class="photoset-container">
-  <div class="photo-container photo-container-cover">
+  <div data-src="{{vm.photoset.coverImageURL}}" class="photo-container photo-container-cover lazyload">
 
     <h1>{{vm.photoset.name}}</h1>
     <div>
-      <img data-src="{{vm.photoset.coverImageURL}}" alt="" class="img-fluid lazyload">
-      <span>{{vm.photoset.narrative}}</span>
+      <img ng-src="{{vm.photoset.coverImageURL}}" alt="" class="img-fluid">
+      <span class="narrative">{{vm.photoset.narrative}}</span>
     </div>
   </div>
 
@@ -13,5 +13,12 @@
   <!-- Don't show cover image - ng-if -->
   <div ng-if="photo.imageSource != vm.photoset.coverImageURL" class="photo-container photo-container-padding" ng-repeat="photo in vm.photos">
     <img class="img-fluid lazyload" data-src="{{photo.imageSource}}" alt="">
+    <span ng-if="photo.byline !== null" class="byline">{{photo.byline}}</span>
   </div>
 </div>
+
+<script type="text/javascript">
+  window.onbeforeunload = function(){
+    window.scrollTo(0,0);
+  }
+</script>
