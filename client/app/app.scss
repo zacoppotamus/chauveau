@@ -3,11 +3,36 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../bower_components/bootstrap/dist/css/bootstrap.min.css';
 @import '../bower_components/dropzone/dist/basic.css';
 @import '../bower_components/dropzone/dist/dropzone.css';
-// @import 'variables.scss';
 
 /**
  * App-wide Styles
  */
+
+ $serif: "adobe-caslon-pro", Georgia, Serif;
+ $black: #1a1a1a;
+ $white: #a5a5a5;
+
+ @font-face {
+     font-family: "Proxima Nova";
+     font-style: regular;
+     font-weight: regular;
+     src: url("/assets/fonts/Proxima Nova Regular.otf") format("opentype");
+ }
+
+ @font-face {
+     font-family: "Abril Fatface";
+     font-style: regular;
+     font-weight: regular;
+     src: url("/assets/fonts/AbrilFatface.ttf") format("truetype");
+ }
+
+ @font-face {
+     font-family: "Open Sans";
+     font-style: regular;
+     font-weight: bold;
+     src: url("/assets/fonts/OpenSans-Bold.ttf") format("truetype");
+ }
+
 
 a {
   text-decoration: none;
@@ -42,7 +67,7 @@ a:hover {
     text-transform: uppercase;
     text-align: center;
     font-size: 7em;
-    font-family: Georgia;
+    font-family: $serif;
   }
 
   & h3 {
@@ -58,13 +83,21 @@ a:hover {
     font-family: Georgia;
     font-style: italic;
   }
+}
 
-  & .footer {
-    position: absolute;
-    width: 70%;
-    margin-left: 20px;
-    bottom: 2%;
-    color: white !important;
+.header {
+  z-index: 1000;
+  text-transform: uppercase;
+  position: absolute;
+  width: 100%;
+  padding-top: 5px;
+  top: 0%;
+  // background-color: rgba($black, 0.8);
+  color: white !important;
+
+  & a {
+    color: $black;
+    font-family: "Proxima Nova";
   }
 }
 
