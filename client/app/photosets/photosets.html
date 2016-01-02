@@ -1,10 +1,24 @@
-<h1>Photosets</h1>
-<div class="container">
-  <li class="list-group-item" ng-repeat="photoset in vm.photosets">
-    <a ui-sref="photoset({ photosetId: photoset.photoset_id })">
-      <p>{{photoset.name}}</p>
-    </a>
-    <a ui-sref="editPhotoset({ photosetId: photoset.photoset_id })"> Edit</a>
-  </li>
+<div class="photosets-container">
+  <ul class="photo-grid-left">
+    <li>
+      <h1>Photosets</h1>
+    </li>
+    <li ng-if="$index <= vm.photosets.length/2"class="photoset-item" ng-repeat="photoset in vm.photosets">
+      <a ui-sref="photoset({ photosetId: photoset.photoset_id })">
+        <img data-src="{{photoset.coverImageURL}}" class="lazyload" alt="">
+        <p class="photoset-name">{{photoset.name}}</p>
+      </a>
+      <!-- <a ui-sref="editPhotoset({ photosetId: photoset.photoset_id })"> Edit</a> -->
+    </li>
+  </ul>
+  <ul class="photo-grid-right">
+    <li ng-if="$index > vm.photosets.length/2"class="photoset-item" ng-repeat="photoset in vm.photosets">
+      <a ui-sref="photoset({ photosetId: photoset.photoset_id })">
+        <img data-src="{{photoset.coverImageURL}}" class="lazyload" alt="">
+        <p class="photoset-name">{{photoset.name}}</p>
+      </a>
+      <!-- <a ui-sref="editPhotoset({ photosetId: photoset.photoset_id })"> Edit</a> -->
+    </li>
+  </ul>
   <div ng-if="photoset.length===0">No photosets yet!</div>
 </ul>
