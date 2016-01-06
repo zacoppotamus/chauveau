@@ -6,6 +6,7 @@
     <li ng-if="$index <= vm.photosets.length/2"class="photoset-item" ng-repeat="photoset in vm.photosets">
       <a ui-sref="photoset({ photosetId: photoset.photoset_id })">
         <img data-src="{{photoset.coverImageURL}}" class="lazyload" alt="">
+        <!-- <div class="clearfix-title-wrap"></div> -->
         <p class="photoset-name">{{photoset.name}}</p>
       </a>
       <!-- <a ui-sref="editPhotoset({ photosetId: photoset.photoset_id })"> Edit</a> -->

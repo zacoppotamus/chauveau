@@ -26,3 +26,20 @@ Run `grunt build` for building and `grunt serve` for preview.
 ## Testing
 
 Running `npm test` will run the unit tests with karma.
+
+## Deploying to AWS
+
+Use Bitnami MEAN AMI from AWS Marketplace. Change permissions in apps/:
+```sudo chmod -R 757 apps```
+
+Install grunt:
+```sudo npm install -g grunt-cli```
+```npm install grunt-contrib-sass```
+
+[Install Ruby and Gems](https://n3rve.com/?p=285)
+
+Install sass:
+```gem install sass`
+
+### To copy local ssh key to Amazon (for github)
+```cat ~/.ssh/id_rsa.pub | ssh -i Chauveau.pem ubuntu@ec2-54-93-90-33.eu-central-1.compute.amazonaws.com```

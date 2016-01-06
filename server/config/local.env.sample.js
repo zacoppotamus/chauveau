@@ -16,10 +16,10 @@ module.exports = {
   TWITTER_SECRET:   'secret',
 
   // Control debug level for modules using visionmedia/debug
-  DEBUG: ''
+  DEBUG: '',
 
-  AWS_ACCESS_KEY = "xxx";
-  AWS_SECRET_KEY = "xxx";
-  S3_BUCKET = "xxx";
-  S3_REGION = "xxx";
+  AWS_ACCESS_KEY: "xxx",
+  AWS_SECRET_KEY: "xxx",
+  S3_BUCKET: "xxx",
+  S3_REGION: "xxx",
 };
