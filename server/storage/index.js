@@ -61,9 +61,9 @@ router.get('/sign_s3', function(req, res, next) {
  * a way that suits your application.
  */
 router.post('/submit_form', function(req, res){
-    username = req.body.username;
-    full_name = req.body.full_name;
-    photo_url = req.body.photo_url;
+    var username = req.body.username;
+    var full_name = req.body.full_name;
+    var photo_url = req.body.photo_url;
     // update_account(username, full_name, photo_url); // TODO: create this function
     // TODO: Return something useful or redirect
 });

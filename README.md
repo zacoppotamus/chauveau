@@ -43,3 +43,10 @@ Install sass:
 
 ### To copy local ssh key to Amazon (for github)
 ```cat ~/.ssh/id_rsa.pub | ssh -i Chauveau.pem ubuntu@ec2-54-93-90-33.eu-central-1.compute.amazonaws.com```
+
+### To upload files to the EC2 instance:
+```scp -i resources/Chauveau.pem dev2.sqlite ubuntu@ec2-54-93-90-33.eu-central-1.compute.amazonaws.com:~/apps/chauveau```
+
+### Set Node Environment in EC2:
+```echo export NODE_ENV=production >> ~/.bash_profile```
+```source ~/.bash_profile```
