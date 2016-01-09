@@ -61,10 +61,15 @@ angular.module('sqlChauveauApp')
             // headers: [{ "x-amz-acl": "public-read", "Content-Type": "image/jpg"}],
             method: 'PUT',
             sending: function(file, xhr) {
+              // Don't send request until uploadURL is done
+              while(scope.signedRequests.length < 1)
+              {}
+
 
               xhr.open('PUT', scope.signedRequests.pop());
               var _send = xhr.send;
               xhr.send = function() {
+                console.log('file', file);
                 _send.call(xhr, file);
               };
 

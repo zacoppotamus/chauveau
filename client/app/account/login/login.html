@@ -1,11 +1,9 @@
-<!-- <navbar></navbar> -->
+<navbar></navbar>
 <div >
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
         <h1>Login</h1>
-        <p>Accounts are reset on server restart from <code>server/config/seed.js</code>. Default account is <code>test@example.com</code> / <code>test</code></p>
-        <p>Admin account is <code>admin@example.com</code> / <code>admin</code></p>
       </div>
       <div class="col-sm-12">
         <form class="form" name="form" ng-submit="vm.login(form)" novalidate>
@@ -37,9 +35,9 @@
             <button class="btn btn-inverse btn-lg btn-login" type="submit">
               Login
             </button>
-            <a class="btn btn-default btn-lg btn-register" ui-sref="signup">
+            <button class="btn btn-default btn-lg btn-register" ui-sref="signup">
               Register
-            </a>
+            </button>
           </div>
 
           <hr/>
