@@ -53,3 +53,35 @@ Install sass:
 ### Set Node Environment in EC2:
 ```echo export NODE_ENV=production >> ~/.bash_profile```
 ```source ~/.bash_profile```
+
+### Running Node.js up and ensuring it runs forever with foreverJS:
+Generate dist version of app
+```grunt```, from root folder
+
+Install foreverJS
+```npm install -g forever```
+
+Make a chauveau.conf script in /etc/init containing the following:
+```
+start on startup
+exec forever start /home/bitnami/apps/chauveau/dist/server/app.js
+```
+
+### Set up reverse proxy on port 8080 for Nginx
+Put this in sites-enabled:
+
+```
+server {
+  server_name chauveau.izac.us www.chauveau.izac.us;
+  listen 80;
+
+  location / {
+    proxy_pass http://MY_PRIVATE_IP:8080;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
+```
