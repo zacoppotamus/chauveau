@@ -22,4 +22,10 @@ module.exports = {
   AWS_SECRET_KEY: "xxx",
   S3_BUCKET: "xxx",
   S3_REGION: "xxx",
+
+  // RDS Remote database
+  DB_NAME: "XXX",
+  DB_USER: "XXX",
+  DB_PASSWORD: "XXX-XXX",
+  DB_HOST: "XXX.XXX.XXX-XXX-XXX.XXX.XXX.XXX"
 };
