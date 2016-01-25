@@ -23,6 +23,7 @@ module.exports = function(config) {
       'client/bower_components/lazysizes/lazysizes.js',
       'client/bower_components/dropzone/dist/min/dropzone.min.js',
       'client/bower_components/bootstrap/dist/js/bootstrap.js',
+      'client/bower_components/angular-animate/angular-animate.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',

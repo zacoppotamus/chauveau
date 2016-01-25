@@ -37,6 +37,7 @@ $serif: "adobe-caslon-pro", Georgia;
 
 .photo-container-cover {
   overflow-x: hidden;
+  overflow-y: hidden;
   display: block;
   width: 100%;
   height: 100%;
@@ -52,7 +53,7 @@ $serif: "adobe-caslon-pro", Georgia;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0 auto;
-    font-family: "Abril Fatface";
+    font-family: "adobe-caslon-pro";
     // Make font size responsive
     font-size: 11em;
     color: white;
@@ -91,7 +92,7 @@ $serif: "adobe-caslon-pro", Georgia;
 // Add Photoset View
 // ===============================
 .add-photoset-container {
-  font-family: "Open Sans";
+  font-family: "Proxima Nova";
   width: 100vw;
   height: 100vh !important;
   padding: 80px;
@@ -104,6 +105,7 @@ $serif: "adobe-caslon-pro", Georgia;
     font-size: 36px;
     padding: 20px;
     border-radius: 4px;
+    text-align: center;
   }
 
   .photoset-form {
@@ -194,13 +196,18 @@ $serif: "adobe-caslon-pro", Georgia;
     float: right;
   }
 
+  & img:hover {
+    opacity: .6;
+  }
+
   & .photoset-name {
     position: relative;
     bottom: 0;
-    font-family: 'Open Sans';
+    font-family: 'Proxima Nova';
     width: 100%;
-    font-size: 40px;
+    font-size: 30px;
     color: black;
+
   }
 
   & .photo-grid-left li, .photo-grid-right li {
@@ -227,9 +234,10 @@ $serif: "adobe-caslon-pro", Georgia;
   // }
 
   & h1 {
-    margin-bottom: -10px !important;
+    margin-bottom: 25px !important;
     font-family: "adobe-caslon-pro";
-    font-size: 55px;
+    text-transform: uppercase;
+    font-size: 79px;
 
     @media(max-width: 768px) {
       & {
@@ -250,6 +258,17 @@ $serif: "adobe-caslon-pro", Georgia;
       max-width: 80%;
       height: auto;
     }
+  }
+}
+
+// Edit photoset
+.edit-photoset-container {
+  max-width: 80%;
+  margin: 0 auto;
+
+  & img {
+    max-width: 60%;
+    height: auto;
   }
 }
 
