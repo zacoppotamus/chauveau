@@ -56,7 +56,7 @@ Install sass:
 
 ### Running Node.js up and ensuring it runs forever with foreverJS:
 Generate dist version of app
-```grunt```, from root folder
+```grunt --force```, from root folder
 
 Install foreverJS
 ```npm install -g forever```
