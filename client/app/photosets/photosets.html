@@ -7,16 +7,22 @@
       <a ui-sref="photoset({ photosetId: photoset.photoset_id })">
         <img data-src="{{photoset.coverImageURL}}" class="lazyload" alt="">
         <!-- <div class="clearfix-title-wrap"></div> -->
-        <p class="photoset-name">{{photoset.name}}</p>
+        <p class="photoset-name">
+          {{photoset.name}}
+          <span><a class="edit-photoset" ui-sref="editPhotoset({ photosetId: photoset.photoset_id })"> Edit</a></span>
+        </p>
       </a>
-      <a ui-sref="editPhotoset({ photosetId: photoset.photoset_id })"> Edit</a>
+      
     </li>
   </ul>
   <ul class="photo-grid-right">
     <li ng-if="$index > vm.photosets.length/2"class="photoset-item" ng-repeat="photoset in vm.photosets">
       <a ui-sref="photoset({ photosetId: photoset.photoset_id })">
         <img data-src="{{photoset.coverImageURL}}" class="lazyload" alt="">
-        <p class="photoset-name">{{photoset.name}}</p>
+        <p class="photoset-name">
+          {{photoset.name}}
+          <span><a class="edit-photoset" ui-sref="editPhotoset({ photosetId: photoset.photoset_id })"> Edit</a></span>
+        </p>
       </a>
       <!-- <a ui-sref="editPhotoset({ photosetId: photoset.photoset_id })"> Edit</a> -->
     </li>

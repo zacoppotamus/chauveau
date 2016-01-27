@@ -5,23 +5,22 @@
     <div class="col-sm-12">
       <div ng-repeat="photo in vm.photos">
         <form class="form" name="form" ng-submit="vm.updatePhoto(photo, $index)" novalidate>
-          <div class="col-sm-12">
-            <img ng-src="{{ photo.imageSource }}" alt="">
+          <div class="col-sm-12 edit-photo-form">
+            <img class="lazyload" ng-src="{{ photo.imageSource }}" alt="">
             <div class="form-group">
               <label>Byline</label>
 
-              <input type="text" name="byline" class="form-control" ng-model="vm.photo[$index].byline" required>
+              <input ng-if="photo.byline !== null" type="text" name="byline" class="form-control" ng-model="vm.photo[$index].byline" ng-value="photo.byline" required>
+
+              <input ng-if="photo.byline == null" type="text" name="byline" class="form-control" ng-model="vm.photo[$index].byline" required>
 
               <label>Make Cover Picture</label>
 
               <input type="checkbox" name="narrative" class="form-control" ng-model="vm.photo[$index].makeCover" required>
             </div>
-
-            <!-- <div class="form-group">
-            </div>
-   -->
             <div>
-              <button class="btn btn-inverse btn-lg btn-login glyphicon glyphicon-ok" type="submit">
+              <button class="btn btn-inverse btn-lg btn-login" type="submit">
+                Update
               </button>
             </div>
           </div>

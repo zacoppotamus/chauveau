@@ -25,7 +25,16 @@ $serif: "adobe-caslon-pro", Georgia;
     color: $white;
     width: 100%;
     text-align: right;
+    font-family: $serif;
+    margin-top: 10px;
+    font-size: 16px;
   }
+}
+
+.edit-photoset {
+  font-size: 20px;
+  text-transform: lowercase;
+  font-style: italic;
 }
 
 .photo-container-padding {
@@ -269,6 +278,10 @@ $serif: "adobe-caslon-pro", Georgia;
   & img {
     max-width: 60%;
     height: auto;
+  }
+
+  & .edit-photo-form {
+    margin-bottom: 50px;
   }
 }
 
